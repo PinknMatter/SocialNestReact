@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+      .link {
+        stroke: #999;
+      }
+      .node {
+        fill: #00f;
+        stroke: #fff;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add Relationship</h1>
+    <form id="relationshipForm">
+      <div>
+        <label for="person1FirstName">Your First Name:</label>
+        <input
+          type="text"
+          id="person1FirstName"
+          name="person1FirstName"
+          required
+        />
+      </div>
+      <div>
+        <label for="person1LastName">Your Last Name:</label>
+        <input
+          type="text"
+          id="person1LastName"
+          name="person1LastName"
+          required
+        />
+      </div>
+      <div>
+        <label for="person2FirstName">Friend's First Name:</label>
+        <input
+          type="text"
+          id="person2FirstName"
+          name="person2FirstName"
+          required
+        />
+      </div>
+      <div>
+        <label for="person2LastName">Friend's Last Name:</label>
+        <input
+          type="text"
+          id="person2LastName"
+          name="person2LastName"
+          required
+        />
+      </div>
+      <button type="submit">Add Relationship</button>
+    </form>
+    <script>
+      document
+        .getElementById("relationshipForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = new FormData(event.target);
+          const data = {
+            person1FirstName: formData.get("person1FirstName"),
+            person1LastName: formData.get("person1LastName"),
+            person2FirstName: formData.get("person2FirstName"),
+            person2LastName: formData.get("person2LastName"),
+          };
+
+          fetch("/addRelationship", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.text();
+            })
+            .then((data) => {
+              console.log(data); // Handle success
+              alert("Relationship added successfully!");
+            })
+            .catch((error) => {
+              console.error("Failed to add relationship:", error);
+              alert("An error occurred while adding the relationship.");
+            });
+        });
+    </script>
+    <div id="graph"></div>
+    <script>
+      document
+        .getElementById("relationshipForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const formData = new FormData(event.target);
+          const data = {
+            person1FirstName: formData.get("person1FirstName"),
+            person1LastName: formData.get("person1LastName"),
+            person2FirstName: formData.get("person2FirstName"),
+            person2LastName: formData.get("person2LastName"),
+          };
+
+          fetch("/addRelationship", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              alert("Relationship added successfully!");
+              // Optionally, trigger a reload of the graph data here
+            })
+            .catch((error) => {
+              console.error("Failed to add relationship:", error);
+              alert("An error occurred while adding the relationship.");
+            });
+        });
+
+      // Fetch and display the graph
+
+      const width = 1960; // SVG width
+      const height = 1600; // SVG height
+      const nodeRadius = 25; // Node radius
+      fetch("/api/graphData")
+        .then(async (response) => {
+          let rawData = await response.json();
+
+          let nodesMap = new Map();
+          let links = [];
+          let normalizedNodesMap = new Map(); // For deduplication based on normalized names
+          const normalizeName = (node) => {
+            // Trim spaces and convert to lowercase for both first and last names
+            const firstName = node.properties["First Name"]
+              .trim()
+              .toLowerCase();
+            const lastName = node.properties["Last Name"].trim().toLowerCase();
+            return `${firstName} ${lastName}`;
+          };
+
+          // First, process nodes to handle duplicates based on names
+          rawData.result.records.forEach((record) => {
+            let [sourceNode, , targetNode] = record._fields;
+
+            // Normalize names for case-insensitive comparison
+
+            [sourceNode, targetNode].forEach((node) => {
+              const nodeId = node.identity.low;
+              const nodeName = normalizeName(node);
+
+              if (!normalizedNodesMap.has(nodeName)) {
+                // Not a duplicate, so add it
+                nodesMap.set(nodeId, {
+                  id: nodeId,
+                  ...node.properties,
+                  name: nodeName, // Store normalized name for display or further processing
+                });
+                normalizedNodesMap.set(nodeName, nodeId); // Map normalized name to node ID
+              }
+            });
+          });
+
+          // Now, process links, adjusting references to account for deduplicated nodes
+          rawData.result.records.forEach((record) => {
+            let [sourceNode, relationship, targetNode] = record._fields;
+
+            // Use normalized name to find the unique node ID
+            const sourceId = normalizedNodesMap.get(normalizeName(sourceNode));
+            const targetId = normalizedNodesMap.get(normalizeName(targetNode));
+
+            links.push({
+              source: sourceId,
+              target: targetId,
+              type: relationship.type, // Adjust as needed
+            });
+          });
+
+          let nodes = Array.from(nodesMap.values());
+          console.log(nodes, links);
+
+          // Add random positions to nodes (adjust `width`, `height`, and `nodeRadius` as needed)
+          const width = 960,
+            height = 600,
+            nodeRadius = 25;
+          nodes.forEach((node) => {
+            node.x = Math.random() * (width - nodeRadius * 2) + nodeRadius;
+            node.y = Math.random() * (height - nodeRadius * 2) + nodeRadius;
+          });
+
+          return { nodes, links };
+        })
+        .then((graph) => {
+          const zoom = d3
+            .zoom()
+            .on("zoom", (event) => {
+              container.attr("transform", event.transform);
+            })
+            .on("end", (event) => {
+              // Listen for the end of zooming and panning
+              if (!event.sourceEvent) return; // Ignore programmatic events
+
+              // Current transformation
+              let t = event.transform;
+
+              // Apply a slight reverse transformation
+              let bounceTransform = d3.zoomIdentity
+                .translate(t.x * 1.05, t.y * 1.05) // Adjust these values for the bounce effect
+                .scale(t.k);
+
+              // Smoothly transition to the bounce effect and back to the final position
+              svg
+                .transition()
+                .duration(500) // Adjust duration for effect timing
+                .call(zoom.transform, bounceTransform)
+                .transition()
+                .duration(500)
+                .call(zoom.transform, t);
+            });
+
+          const svg = d3
+            .select("#graph")
+            .append("svg")
+            .attr("width", 960)
+            .attr("height", 960)
+            .style("cursor", "move")
+            .call(zoom)
+
+            .call(
+              d3.zoom().on("zoom", (event) => {
+                container.attr("transform", event.transform);
+              })
+            )
+            .append("g"); // This 'g' element serves as a container for all graph elements
+
+          const container = svg.append("g");
+
+          const simulation = d3
+            .forceSimulation(graph.nodes)
+            .force(
+              "link",
+              d3
+                .forceLink(graph.links)
+                .id((d) => d.id)
+                .distance(200)
+            )
+            .force("charge", d3.forceManyBody())
+            .force("center", d3.forceCenter(960 / 2, 600 / 2));
+
+          const text = container
+            .append("g")
+            .attr("class", "labels")
+            .selectAll("text")
+            .data(graph.nodes)
+            .join("text")
+            .text((d) => `${d["First Name"]} ${d["Last Name"]}`) // Adjust this based on your data
+            .attr("x", (d) => d.x)
+            .style("text-anchor", "middle")
+            .style("fill", "#555")
+            .style("font-family", "Arial")
+            .style("font-size", 12)
+            .style("z-index", 1000)
+            .attr("transform", "translate(0, -30)");
+
+          const link = container
+            .append("g")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
+            .selectAll("line")
+            .data(graph.links)
+            .join("line")
+            .attr("stroke-width", 5);
+
+          const node = container
+            .append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 0.1)
+            .selectAll("circle")
+            .data(graph.nodes)
+            .join("circle")
+            .attr("r", 25)
+            .attr("fill", color)
+            .style("z-index", 1)
+            .call(drag(simulation));
+
+          node.append("title").text((d) => d.id);
+
+          simulation.on("tick", () => {
+            // Apply constraints to node positions
+            node
+
+              .attr(
+                "cx",
+                (d) =>
+                  (d.x = Math.max(
+                    nodeRadius,
+                    Math.min(width - nodeRadius, d.x)
+                  ))
+              )
+              .attr(
+                "cy",
+                (d) =>
+                  (d.y = Math.max(
+                    nodeRadius,
+                    Math.min(height - nodeRadius, d.y)
+                  ))
+              );
+
+            // Update positions for links and text labels as well
+            link
+              .attr("x1", (d) => d.source.x)
+              .attr("y1", (d) => d.source.y)
+              .attr("x2", (d) => d.target.x)
+              .attr("y2", (d) => d.target.y);
+
+            text.attr("x", (d) => d.x).attr("y", (d) => d.y - 10); // Adjust this as necessary
+          });
+
+          // Drag functionality
+          function drag(simulation) {
+            function dragstarted(event) {
+              if (!event.active) simulation.alphaTarget(0.3).restart();
+              event.subject.fx = event.subject.x;
+              event.subject.fy = event.subject.y;
+            }
+
+            function dragged(event) {
+              event.subject.fx = event.x;
+              event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+              if (!event.active) simulation.alphaTarget(0);
+              event.subject.fx = null;
+              event.subject.fy = null;
+            }
+
+            return d3
+              .drag()
+              .on("start", dragstarted)
+              .on("drag", dragged)
+              .on("end", dragended);
+          }
+
+          function color() {
+            return "#00f";
+          }
+        });
+    </script>
+  </body>
+</html>
