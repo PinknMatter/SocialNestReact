@@ -1,0 +1,17 @@
+button {
+  padding: 10px;
+  color: gray;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.enter-button {
+  margin-top: 15em;
+  width: 20%;
+}
+
+button:hover {
+  background-color: rgba(240, 248, 255, 0.331);
+  transition-duration: 1s;
+  cursor: pointer;
+}
