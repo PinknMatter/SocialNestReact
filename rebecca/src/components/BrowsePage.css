@@ -1,0 +1,20 @@
+.icon {
+  width: 70px;
+  float: right;
+  cursor: pointer;
+}
+
+.iconlogo {
+  width: 80px;
+  float: left;
+  cursor: pointer;
+}
+
+.icon:hover {
+  margin-bottom: 20px;
+}
+
+.icon-container {
+  display: block;
+  padding: 70px;
+}
