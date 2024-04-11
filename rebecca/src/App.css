@@ -4,7 +4,6 @@
 
 body {
   background-color: #e6e6e6;
-  background-image: url(./img/background.png);
   background-size: cover;
 }
 
@@ -29,6 +28,3 @@ body {
   color: #61dafb;
 }
 
-div {
-  background-color: #e6e6e6;
-}

@@ -96,34 +96,6 @@
     </script>
     <div id="graph"></div>
     <script>
-      document
-        .getElementById("relationshipForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          const formData = new FormData(event.target);
-          const data = {
-            person1FirstName: formData.get("person1FirstName"),
-            person1LastName: formData.get("person1LastName"),
-            person2FirstName: formData.get("person2FirstName"),
-            person2LastName: formData.get("person2LastName"),
-          };
-
-          fetch("/addRelationship", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          })
-            .then((response) => response.text())
-            .then((data) => {
-              alert("Relationship added successfully!");
-              // Optionally, trigger a reload of the graph data here
-            })
-            .catch((error) => {
-              console.error("Failed to add relationship:", error);
-              alert("An error occurred while adding the relationship.");
-            });
-        });
-
       // Fetch and display the graph
 
       const width = 1960; // SVG width

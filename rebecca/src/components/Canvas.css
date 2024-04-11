@@ -1,0 +1,26 @@
+svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+  }
+
+
+
+.SearchContainer{
+    position: relative;
+    z-index: 9;
+    pointer-events: none;
+    display: none;
+
+}
+
+.Search{
+    position: relative;
+    pointer-events: all;
+
+    z-index: 9;
+    
+}

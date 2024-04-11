@@ -2,12 +2,14 @@
   width: 70px;
   float: right;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .iconlogo {
   width: 80px;
   float: left;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .icon:hover {
@@ -15,6 +17,19 @@
 }
 
 .icon-container {
+  position: relative;
   display: block;
-  padding: 70px;
+  padding: 30px;
+  z-index: 9;
+  pointer-events: none;
+ 
 }
+
+.CanvasContainer {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
