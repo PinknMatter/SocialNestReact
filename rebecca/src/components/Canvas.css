@@ -10,16 +10,19 @@ svg {
 
 
 .SearchContainer{
-    position: relative;
+    position: absolute;
+    right: 0;
     z-index: 9;
     pointer-events: none;
-    display: none;
+    padding-right: 40px;
+    
 
 }
 
 .Search{
     position: relative;
     pointer-events: all;
+    float: right;
 
     z-index: 9;
     

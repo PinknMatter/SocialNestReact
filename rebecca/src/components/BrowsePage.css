@@ -33,3 +33,22 @@
   align-items: center;
 }
 
+.SearchContainer{
+  position: absolute;
+  right: 0;
+  z-index: 9;
+  pointer-events: none;
+  padding-right: 40px;
+  padding-top: 65px;
+  
+
+}
+
+.Search{
+  position: relative;
+  pointer-events: all;
+  float: right;
+
+  z-index: 9;
+  
+}

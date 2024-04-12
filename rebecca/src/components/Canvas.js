@@ -280,24 +280,7 @@ function MyComponent() {
 
   return (
     <div>
-      <div className="SearchContainer">
-        <input
-          className="Search"
-          type="text"
-          id="searchInput"
-          placeholder="Search for a node..."
-        />
-        <button className="Search" id="searchButton">
-          Search
-        </button>
-      </div>
-
       <svg ref={svgRef}></svg>
-
-      {/* {!isLoading ? (
-      ) : (
-        <div>Loading SVGs...</div> // This could be a more elaborate loading component
-      )} */}
     </div>
   );
 }
