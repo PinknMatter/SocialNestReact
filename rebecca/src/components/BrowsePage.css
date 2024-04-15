@@ -18,3 +18,11 @@
   display: block;
   padding: 70px;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: gray;
+}

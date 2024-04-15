@@ -1,0 +1,10 @@
+p {
+  font-size: 14pt;
+}
+
+.container {
+  width: 60%;
+  background-color: rgba(120, 120, 120, 0.099);
+  padding: 30px;
+  border-radius: 10px;
+}

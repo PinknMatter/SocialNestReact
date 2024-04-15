@@ -4,10 +4,6 @@ import Browse from "./components/BrowsePage";
 
 import "./App.css";
 import { useState } from "react";
-import { OpenNav } from "./components/Sidebar";
-import { CloseNav } from "./components/Sidebar";
-
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   const [menuSelector, setMenuSelector] = useState(0);
