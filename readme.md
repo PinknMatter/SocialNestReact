@@ -4,7 +4,7 @@
 
 ### Project Overview
 
-"SocialNest" is an innovative platform designed to explore and visualize the complex web of social connections, highlighting the impact of social networks on various aspects of modern life. It utilizes advanced graph technologies and interactive data visualizations to offer users a profound insight into the structure and dynamics of their social worlds.
+"SocialNest" is an open-source platform designed to explore and visualize the complex web of social connections, highlighting the impact of social networks on various aspects of modern life. It utilizes advanced graph technologies and interactive data visualizations to offer users a profound insight into the structure and dynamics of their social worlds.
 
 ### Concept and Theoretical Background
 
@@ -23,14 +23,14 @@ Drawing inspiration from theories like the "Six Degrees of Separation" and "Jewi
 ### Starting the Server
 
 1. Open your terminal or command prompt.
-2. Navigate to the project directory.
+2. Navigate to the project directory "Server".
 3. Run the command:
    node index.js
 
 ### Launching the Client
 
 1. Open a new terminal or command prompt window.
-2. Navigate to the client directory.
+2. Navigate to the client directory "SocialNestClient".
 3. Run the command:
    npm start
 4. When prompted to host on another port, type `yes`.
