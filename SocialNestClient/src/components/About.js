@@ -1,9 +1,9 @@
 import "./About.css";
 
-function About(props) {
+function About({ onClose }) {
   return (
-    <div className="container">
-      <div className="fade">
+    <div className="overlay" onClick={onClose}>
+      <div className="content" onClick={(e) => e.stopPropagation()}>
         <p>
           Social networks have vastly expanded beyond mere platforms for
           socializing, emerging as ecosystems that significantly impact
