@@ -8,11 +8,11 @@
 
 ### Concept and Theoretical Background
 
-Drawing inspiration from theories like the "Six Degrees of Separation" and "Jewish Geography," SocialNest aims to visually represent the interconnected nature of social communities. The platform combines academic theories and real-world applications to map out the intricate patterns of relationships that define human interactions today.
+Drawing inspiration from theories like the "Six Degrees of Separation" and "Jewish Geography," SocialNest aims to visually represent the interconnected nature of social communities.
 
 ## Technical Overview
 
-"SocialNest" leverages Neo4j for its database needs, renowned for handling complex relationships and queries efficiently. The frontend employs JavaScript libraries like D3.js and Cytoscape.js for dynamic and interactive visualizations. Real-time data synchronization is potentially handled via WebSockets, enhancing user experience by reflecting database updates immediately.
+"SocialNest" leverages Neo4j for its database for handling complex relationships and queries . The frontend employs JavaScript libraries like D3.js for dynamic and interactive visualizations.
 
 ## Design Philosophy
 
