@@ -50,7 +50,7 @@ function Input(props) {
 
       <form className="input-container" onSubmit={submitEvent}>
         <div>
-          <label htmlFor="person1FirstName">Your First Name:</label>
+          <label htmlFor="person1FirstName">Your First Name</label>
           <input
             type="text"
             id="person1FirstName"
@@ -61,7 +61,7 @@ function Input(props) {
           />
         </div>
         <div>
-          <label htmlFor="person1LastName">Your Last Name:</label>
+          <label htmlFor="person1LastName">Your Last Name</label>
           <input
             type="text"
             id="person1LastName"
@@ -72,7 +72,7 @@ function Input(props) {
           />
         </div>
         <div>
-          <label htmlFor="person2FirstName">Friend's First Name:</label>
+          <label htmlFor="person2FirstName">Friend's First Name</label>
           <input
             type="text"
             id="person2FirstName"
@@ -83,7 +83,7 @@ function Input(props) {
           />
         </div>
         <div>
-          <label htmlFor="person2LastName">Friend's Last Name:</label>
+          <label htmlFor="person2LastName">Friend's Last Name</label>
           <input
             type="text"
             id="person2LastName"

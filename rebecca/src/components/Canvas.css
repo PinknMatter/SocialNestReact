@@ -1,29 +1,25 @@
 svg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-  }
-
-
-
-.SearchContainer{
-    position: absolute;
-    right: 0;
-    z-index: 9;
-    pointer-events: none;
-    padding-right: 40px;
-    
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 }
 
-.Search{
-    position: relative;
-    pointer-events: all;
-    float: right;
+.SearchContainer {
+  position: absolute;
+  right: 0;
+  z-index: 9;
+  pointer-events: none;
+  padding-right: 80px;
+  padding-top: 55px;
+}
 
-    z-index: 9;
-    
+.Search {
+  position: relative;
+  pointer-events: all;
+  float: right;
+
+  z-index: 9;
 }

@@ -1,8 +1,7 @@
 .input-container {
   background-color: #e6e6e6;
   width: 50%;
-  margin: auto;
-  padding: 5em;
+  padding: 4em;
   border-radius: 10px;
   border: 1px solid gray;
   box-shadow: 0px 0px 50px rgba(128, 128, 128, 0.402);
@@ -11,7 +10,9 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  margin: 2em auto 4em auto;
+  margin: 2em auto 2em auto;
+  align-items: center;
+  text-align: center;
 }
 
 .input-button {
@@ -33,7 +34,9 @@
 input {
   padding: 10px;
   margin: 1em auto 1em auto;
-  width: 70%;
+  width: 90%;
+  border-radius: 10px;
+  border: 1px solid gray;
 }
 
 .input-logo {
@@ -48,7 +51,13 @@ input {
   animation: slideUpAnimation 1s forwards;
 }
 
+label {
+  font-size: 10pt;
+}
 
+div {
+  overflow: hidden;
+}
 
 @keyframes slideUpAnimation {
   from {
