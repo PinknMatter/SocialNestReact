@@ -5,10 +5,8 @@ p {
 .container {
   width: 60%;
   padding: 30px;
-  color: gray;
-  /* border-radius: 10px; */
-  line-height: 80%;
-  /* background-color: rgba(128, 128, 128, 0.135); */
+  color: black;
+  border-radius: 10px;
 }
 
 .fade {

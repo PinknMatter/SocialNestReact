@@ -1,19 +1,11 @@
 import Landing from "./components/LandingPage";
 import Input from "./components/InputPage";
 import Browse from "./components/BrowsePage";
-import About from "./components/About";
-import Sources from "./components/Sources";
 
 import "./App.css";
 import { useState } from "react";
 import { OpenNav } from "./components/Sidebar";
 import { CloseNav } from "./components/Sidebar";
-import {
-  BrowserRouter as Router,
-  Route,
-  useHistory,
-  Switch,
-} from "react-router-dom";
 
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -43,14 +35,7 @@ function App() {
   } else if (menuSelector === 2) {
     return (
       <div>
-        <Router>
-          <Browse onEnterClick={onEnterClick} />
-          {/* <Switch> */}
-          {/* <Route path="/about" exact={true} component={About} /> */}
-          {/* <Route path="/sources" exact={true} component={Sources} /> */}
-          {/* <Route path="/" exact={true} component={Browse} /> */}
-          {/* </Switch> */}
-        </Router>
+        <Browse onEnterClick={onEnterClick} />
       </div>
     );
   }

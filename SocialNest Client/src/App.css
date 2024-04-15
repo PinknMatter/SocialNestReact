@@ -4,6 +4,8 @@
 
 body {
   background-color: #e6e6e6;
+  background-image: url(./img/background.png);
+  background-size: cover;
   user-select: none;
 }
 

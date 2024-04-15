@@ -1,10 +1,6 @@
 import "./About.css";
 
 function Sources(props) {
-  //   function setup() {
-  //     document.getElementById("desc2").style.display = "block";
-  //   }
-  //   setup();
   return (
     <div className="container">
       <div className="fade">
@@ -17,12 +13,8 @@ function Sources(props) {
           Review, 50(4), 370.
         </p>
         <p>
-          Wellman, B., & Berkowitz, S. D. (1988). Social structures: A network
-          approach. Cambridge University Press.
-        </p>
-        <p>
-          Sheskin, Ira M., and Arnold Dashefsky. "‘Jewish Geography’ in the
-          United States: A Spatial
+          Wellman, B., & Berkowitz, S. D. (Eds.). (1988). Social structures: A
+          network approach. Cambridge University Press.
         </p>
       </div>
     </div>
