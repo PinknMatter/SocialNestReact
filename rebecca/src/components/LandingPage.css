@@ -12,6 +12,11 @@ div {
   overflow: hidden;
 }
 
+.bg {
+  background-image: url(../img/background.png);
+  background-size: cover;
+}
+
 @keyframes slideDownAnimation {
   from {
     transform: translateY(0%);

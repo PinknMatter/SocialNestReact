@@ -43,7 +43,7 @@ function Input(props) {
   };
 
   return (
-    <div>
+    <div className="bg">
       <div className="App">
         <img src={logo} className="input-logo" alt="logo" />
       </div>

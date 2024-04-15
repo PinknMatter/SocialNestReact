@@ -4,10 +4,12 @@ import "./LandingPage.css";
 
 function Landing(props) {
   return (
-    <div>
+    <div className="bg">
       <div className="App">
-        <img src={logo} className="App-logo" alt="logo" />
-        <EnterButton onEnterClick={props.onEnterClick} />
+        <div className="fade">
+          <img src={logo} className="App-logo" alt="logo" />
+          <EnterButton onEnterClick={props.onEnterClick} />
+        </div>
       </div>
     </div>
   );
