@@ -1,0 +1,24 @@
+p {
+  text-align: center;
+}
+
+.slide-down {
+  transform: translateY(100%);
+  transition: transform 1s ease;
+  animation: slideDownAnimation 1s forwards;
+}
+
+div {
+  overflow: hidden;
+}
+
+@keyframes slideDownAnimation {
+  from {
+    transform: translateY(0%);
+    opacity: 100%;
+  }
+  to {
+    transform: translateY(15%);
+    opacity: 0%;
+  }
+}
