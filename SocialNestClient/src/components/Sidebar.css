@@ -15,6 +15,10 @@ body {
   padding-top: 60px;
 }
 
+.btn {
+  display: flex;
+}
+
 .sidebar.active {
   left: 0%;
 }
@@ -44,8 +48,17 @@ ul {
 }
 
 ul li {
-  list-style-type: none;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #a0a0a0;
+  display: block;
+  transition: 0.3s;
   cursor: pointer;
+}
+
+li:hover {
+  color: white;
 }
 
 .overlay {
@@ -61,10 +74,17 @@ ul li {
 }
 
 .content {
-  background: white;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.628);
+  padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  justify-self: center;
+  width: 60%;
+}
+
+.line {
+  line-height: 30px;
 }
 
 @media screen and (max-height: 450px) {

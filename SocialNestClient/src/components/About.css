@@ -1,12 +1,14 @@
 p {
-  font-size: 14pt;
+  font-size: 12pt;
+  color: gray;
 }
 
 .container {
   width: 60%;
   padding: 30px;
-  color: black;
+  color: gray;
   border-radius: 10px;
+  line-height: 80%;
 }
 
 .fade {

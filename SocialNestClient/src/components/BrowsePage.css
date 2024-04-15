@@ -5,8 +5,6 @@
   pointer-events: all;
 }
 
-
-
 .iconlogo {
   width: 80px;
   float: left;
@@ -21,7 +19,7 @@
 .icon-container {
   position: relative;
   display: block;
-  padding: 70px;
+  padding: 85px;
   z-index: 9;
   pointer-events: none;
 }
@@ -39,7 +37,7 @@
   right: 0;
   z-index: 9;
   pointer-events: none;
-  padding-right: 40px;
+  padding-right: 80px;
   padding-top: 65px;
 }
 
