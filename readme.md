@@ -37,10 +37,10 @@ Drawing inspiration from theories like the "Six Degrees of Separation" and "Jewi
 
 ### Environment Configuration
 
-Ensure a `.env` file is present in the project root containing necessary configurations:
-NEO_USER=
-NEO_PASS=
-NEO_URI=
+Ensure a `.env` file is present in the project root (Server Folder) containing necessary configurations:
+NEO_USER=neo4j
+NEO_PASS=QnUKDoORvs33xcSUhN3HHNob9jwF3Ogu-3lMgPtWi8Y
+NEO_URI=neo4j+s://456a72a8.databases.neo4j.io
 
 ## References
 
